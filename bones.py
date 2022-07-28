@@ -34,10 +34,11 @@ def test():
 def get_hand_mark(image):
     #image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
     results = hands.process(image)
-    return results.multi_hand_landmarks, mp_hands.HAND_CONNECTIONS
-def get_hand_bone(image):
+    return results.multi_hand_landmarks
+def render_image_bone(image):
     #image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
     results = hands.process(image)
+    print(mp_hands.HAND_CONNECTIONS)
     if results.multi_hand_landmarks:
         for hand_landmarks in results.multi_hand_landmarks:
             mp_drawing.draw_landmarks(
@@ -51,7 +52,7 @@ if __name__=="__main__":
     image=cv2.imread("spark_light\\test.jpg")
     #cv2.imshow('img',image)
     print(get_hand_mark(image))
-    get_hand_bone(image)
+    render_image_bone(image)
     test()
 
 
