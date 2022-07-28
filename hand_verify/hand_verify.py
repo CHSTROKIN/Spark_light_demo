@@ -24,7 +24,7 @@ class MyWindow(QMainWindow, Ui_detect):
     def image(self,image):
         pass
 class detect_model:
-    #暂未完成
+    #定位模型模板类
     def __init__(self):
         self.model_path=""
         self.model_name="yolov5.pt"
@@ -35,7 +35,7 @@ class detect_model:
         x,y,w,h=self.detect(image)
         return image[x:x+w,y:y+h,:]
 class bones_model:
-    
+    #骨骼模型模板类
     def __init__(self):
         self.model_path=""
         self.model_name="yolov5.pt"
@@ -54,7 +54,6 @@ class bones_model:
         z: 0.18804416060447693
     }
     '''
-
 class classify_model:
     def __init__(self) -> None:
         self.model_path=""
@@ -78,10 +77,10 @@ class detect_line():
         cap = cv2.VideoCapture(0)
         cap.set(3, state.image_size[0])#x轴分辨率
         cap.set(4, state.image_size[1])#y轴分辨率
-        a=random.randint(10)
+        a=random.randint(0,10)
         image_path="spark_light\\hand_image\\"+str(a)+'.jpg'
         img=cv2.imread(image_path)
-        self.wid(img)
+        self.wid.image(img)
         start=time.time()
         end=start
         while(end-start<=state.detect_times):
@@ -111,7 +110,9 @@ class detect_line():
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     myWin = MyWindow()
-    det=detect_line(myWin)
+    detM=detect_model()
+    claM=classify_model()
+    det=detect_line(myWin,detM,claM)
     myWin.progress_bar(55)
     det.pipeline()
     sys.exit(app.exec_())
