@@ -6,7 +6,6 @@ from cv2 import FILLED
 import mediapipe as mp
 import bones
 import cv2
-from pynput.keyboard import Controller
 import time
 from time import sleep
 import state
@@ -31,7 +30,6 @@ class hand_drawing(factory.factory):
         self.cap.set(3, state.image_size[0])#x轴分辨率
         self.cap.set(4, state.image_size[1])#y轴分辨率
         self.mp_drawing = mp.solutions.drawing_utils
-        self.keyboard = Controller()#键盘
         self.fps=0
         self.start=time.time()
         self.final_text="this is drawing demo"
