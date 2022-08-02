@@ -5,7 +5,6 @@ sys.path.append(parent)
 import mediapipe as mp
 import bones
 import cv2
-from pynput.keyboard import Controller
 import time
 import state
 from time import sleep
@@ -33,7 +32,6 @@ class hand_keyboard(factory.factory):
         self.cap.set(3, state.image_size[0])#x轴分辨率
         self.cap.set(4, state.image_size[1])#y轴分辨率
         self.mp_drawing = mp.solutions.drawing_utils
-        self.keyboard = Controller()#键盘
         self.button_list=[]
         self.final_text=""
         self.drawing_spec = self.mp_drawing.DrawingSpec(thickness=2, circle_radius=1)
@@ -86,7 +84,6 @@ class hand_keyboard(factory.factory):
                 cv2.rectangle(image, (x - 5, y - 5), (x + w + 5, y + h + 5), (175, 0, 175), cv2.FILLED)#键盘按键变大
                 cv2.putText(image, button.text, (x + 20, y + 65),cv2.FONT_HERSHEY_PLAIN, 4, (255, 255, 255), 4)
                 if(self.dis(cx,cx2,cy,cy2)<state.detection_margin_1):#食指大拇指合拢
-                    self.keyboard.press(button.text)
                     cv2.rectangle(image, button.pos, (x + w, y + h), (0, 255, 0), cv2.FILLED)
                     cv2.putText(image, button.text, (x + 20, y + 65),
                     cv2.FONT_HERSHEY_PLAIN, 4, (255, 255, 255), 4)
