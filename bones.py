@@ -2,11 +2,12 @@ import cv2
 import mediapipe as mp
 import time
 from PIL import Image
+import state
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
 drawing_spec = mp_drawing.DrawingSpec(thickness=2, circle_radius=1)
 drawing_spec1 = mp_drawing.DrawingSpec(thickness=2, circle_radius=1,color=(255,255,255))
-hands = mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5,max_num_hands=1)
+hands = mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5,max_num_hands=state.max_detection_hand_number)
 def test():
     cap = cv2.VideoCapture(0)
     time.sleep(2)

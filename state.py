@@ -9,3 +9,4 @@ sleep_time=0.1
 detect_times=10
 hands= mp.solutions.hands
 conection=hands.HAND_CONNECTIONS
+max_detection_hand_number=1
