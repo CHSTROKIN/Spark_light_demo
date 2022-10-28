@@ -34,11 +34,6 @@
   ## 用法：直接在子文件内运行
 
   任务的参考实现
-  石头剪子布
-
-  ```python
-  python spark_light\paper_scissor_stone\paper_scissor_stone.py
-  ```
 
   虚拟画板
 
